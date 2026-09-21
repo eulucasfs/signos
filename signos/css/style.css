@@ -1,0 +1,302 @@
+/* =========================================================
+   Descubra seu Signo — style.css
+   ========================================================= */
+
+:root {
+    --cor-fundo-1: #0f0c29;
+    --cor-fundo-2: #302b63;
+    --cor-fundo-3: #24243e;
+    --cor-destaque: #ffd54f;
+    --cor-destaque-2: #a78bfa;
+    --cor-texto: #f5f3ff;
+    --cor-card: rgba(255, 255, 255, 0.06);
+    --cor-card-borda: rgba(255, 255, 255, 0.14);
+    --cor-signo: #a78bfa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: var(--cor-texto);
+    background: linear-gradient(135deg, var(--cor-fundo-1), var(--cor-fundo-2) 50%, var(--cor-fundo-3));
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ---------- Fundo de estrelas ---------- */
+.stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, #ffffff 100%, transparent),
+        radial-gradient(2px 2px at 75% 15%, #ffffff 100%, transparent),
+        radial-gradient(1.5px 1.5px at 60% 70%, #ffffff 100%, transparent),
+        radial-gradient(1.5px 1.5px at 90% 40%, #ffffff 100%, transparent),
+        radial-gradient(2px 2px at 35% 85%, #ffffff 100%, transparent),
+        radial-gradient(1px 1px at 10% 60%, #ffffff 100%, transparent),
+        radial-gradient(1.5px 1.5px at 50% 10%, #ffffff 100%, transparent),
+        radial-gradient(1px 1px at 85% 80%, #ffffff 100%, transparent);
+    background-repeat: repeat;
+    background-size: 100% 100%;
+    animation: cintilar 4s ease-in-out infinite alternate;
+    opacity: 0.6;
+}
+
+@keyframes cintilar {
+    from { opacity: 0.35; }
+    to   { opacity: 0.75; }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Cabeçalho / roda zodiacal decorativa ---------- */
+.zodiac-wheel {
+    position: relative;
+    height: 70px;
+}
+
+.zodiac-icon {
+    position: absolute;
+    color: var(--cor-destaque);
+    opacity: 0.85;
+    animation: flutuar 3.5s ease-in-out infinite;
+}
+
+.icon-1 { left: 42%; top: 0;    font-size: 1.4rem; animation-delay: 0s;    color: #ffd54f; }
+.icon-2 { left: 30%; top: 20px; font-size: 1.1rem; animation-delay: 0.6s;  color: #90caf9; }
+.icon-3 { left: 55%; top: 15px; font-size: 1.3rem; animation-delay: 1.1s;  color: #ff8a65; }
+.icon-4 { left: 65%; top: 35px; font-size: 1rem;   animation-delay: 1.6s;  color: #ce93d8; }
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+.titulo-principal {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3rem);
+    background: linear-gradient(90deg, var(--cor-destaque), var(--cor-destaque-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+    color: rgba(245, 243, 255, 0.8);
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* ---------- Cartão de formulário ---------- */
+.card-formulario {
+    background: var(--cor-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--cor-card-borda);
+    border-radius: 1.25rem;
+}
+
+.form-label {
+    color: var(--cor-texto);
+    font-weight: 500;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(167, 139, 250, 0.4);
+}
+
+.btn-descobrir {
+    background: linear-gradient(90deg, var(--cor-destaque-2), #7c3aed);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0.75rem;
+    letter-spacing: 0.3px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-descobrir:hover,
+.btn-descobrir:focus {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.45);
+}
+
+.invalid-feedback {
+    display: none;
+    color: #ff8a80;
+    margin-top: 0.4rem;
+}
+
+.form-control.is-invalid ~ .invalid-feedback,
+.was-validated-manual .form-control:invalid ~ .invalid-feedback {
+    display: block;
+}
+
+.form-control.is-invalid {
+    border: 2px solid #ff8a80;
+}
+
+/* ---------- Rodapé com símbolos dos 12 signos ---------- */
+.signos-rodape {
+    font-size: 1.5rem;
+    letter-spacing: 0.6rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.signos-rodape span {
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.signos-rodape span:hover {
+    color: var(--cor-destaque);
+    transform: scale(1.3);
+    cursor: default;
+}
+
+.creditos {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+}
+
+/* =========================================================
+   Página de resultado
+   ========================================================= */
+
+.subtitulo-resultado {
+    color: rgba(245, 243, 255, 0.7);
+    font-size: 0.95rem;
+}
+
+.simbolo-signo {
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--cor-signo);
+    text-shadow: 0 0 30px var(--cor-signo);
+    margin-bottom: 0.25rem;
+}
+
+.titulo-signo {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    color: var(--cor-texto);
+    margin-bottom: 0.25rem;
+}
+
+.periodo-signo {
+    color: var(--cor-signo);
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+.card-atributo {
+    background: var(--cor-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--cor-card-borda);
+    border-radius: 1rem;
+    color: var(--cor-texto);
+}
+
+.card-atributo i {
+    color: var(--cor-signo);
+}
+
+.atributo-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    color: rgba(245, 243, 255, 0.6);
+}
+
+.atributo-valor {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.card-conteudo {
+    background: var(--cor-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--cor-card-borda);
+    border-radius: 1rem;
+    color: var(--cor-texto);
+}
+
+.titulo-secao {
+    color: var(--cor-destaque);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.lista-caracteristicas,
+.lista-pontos {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.lista-caracteristicas li,
+.lista-pontos li {
+    padding: 0.35rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.lista-caracteristicas li:last-child,
+.lista-pontos li:last-child {
+    border-bottom: none;
+}
+
+.lista-caracteristicas i {
+    color: var(--cor-signo);
+}
+
+.card-positivos i {
+    color: #81c784;
+}
+
+.card-atencao i {
+    color: #ffb74d;
+}
+
+.card-mensagem {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.18), rgba(255, 213, 79, 0.1));
+}
+
+.card-mensagem i {
+    color: var(--cor-destaque);
+}
+
+/* ---------- Responsividade extra ---------- */
+@media (max-width: 576px) {
+    .signos-rodape {
+        letter-spacing: 0.35rem;
+        font-size: 1.2rem;
+    }
+
+    .simbolo-signo {
+        font-size: 3.6rem;
+    }
+}
